@@ -5,6 +5,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import EditCustomer from './EditCustomer';
 
 export default function EditTraining(props) {
 
@@ -13,7 +14,7 @@ export default function EditTraining(props) {
         date: new Date(),
         duration: Number(),
         activity: '',
-        customer: props.customer.id
+        customer: {EditCustomer}
     });
 
 
@@ -23,9 +24,11 @@ export default function EditTraining(props) {
         setOpen(true);
         console.log(props.params);
         setTraining({
+            id: props.params.data.id,
             date: props.params.data.date,
             duration: props.params.data.duration,
-            activity: props.params.data.activity
+            activity: props.params.data.activity,
+            customer: props.params.data.customer
         });
     };
 
@@ -36,7 +39,7 @@ export default function EditTraining(props) {
 
     const handleSave = () => {
         console.log(props.params.data._links.training.href);
-    props.updateCar(props.params.data._links.training.href, training);
+    props.updateTraining(props.params.data._links.training.href, training);
     setOpen(false);
     }
 

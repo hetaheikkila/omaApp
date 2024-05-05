@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function EditCustomer(props) {
+export default function EditCustomer() {
 
     const [customer, setCustomer] = React.useState({
         id: '',
@@ -43,7 +43,7 @@ export default function EditCustomer(props) {
 
     const handleSave = () => {
         console.log(props.params.data._links.customer.href);
-    props.updateCar(props.params.data._links.customer.href, customer);
+    props.updateCustomer(props.params.data._links.customer.href, customer);
     setOpen(false);
     }
 

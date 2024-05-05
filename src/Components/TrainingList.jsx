@@ -5,6 +5,7 @@ import 'ag-grid-community/styles/ag-theme-material.css';
 import Button from "@mui/material/Button";
 import { Snackbar } from '@mui/material';
 import { useRef } from "react";
+import EditTraining from './EditTraining';
 
 export default function TrainingList() {
 
@@ -13,6 +14,7 @@ export default function TrainingList() {
     duration: Number(),
     activity: '',
     customer: ''}]);
+
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState('');
     const URL = 'https://customerrestservice-personaltraining.rahtiapp.fi/api/trainings';
@@ -43,7 +45,7 @@ export default function TrainingList() {
             })
             .then(responseData => {
                 console.log(responseData._embedded.trainings);
-                setCustomers(responseData._embedded.trainings);
+                setTrainings(responseData._embedded.trainings);
             })
             .catch(err => console.error(err));
     }
@@ -68,7 +70,7 @@ export default function TrainingList() {
         }
     }
 
-    const addTraining = (training) => {
+    const AddTraining = (training) => {
         console.log("Customerlist: add customer to db by using rest service, method is POST")
         fetch(URL, {
             method: 'POST',
@@ -113,9 +115,10 @@ export default function TrainingList() {
             .catch(err => console.error(err))
     }
 
+
     return(
         <>
-        <addTraining addTraining={addTraining} />
+        <AddTraining addTraining={AddTraining} />
             <div className="ag-theme-material" style={{ height: '800px', width: '100%', margin: 'auto' }}>
                 <AgGridReact
                     columnDefs={columns}

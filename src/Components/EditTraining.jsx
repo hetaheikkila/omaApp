@@ -14,7 +14,7 @@ export default function EditTraining(props) {
         date: new Date(),
         duration: Number(),
         activity: '',
-        customer: {EditCustomer}
+        customer: {}
     });
 
 
@@ -87,7 +87,7 @@ export default function EditTraining(props) {
               margin="dense"
               label="customer"
               value={training.customer.id}
-              onChange={(e) => setTraining({ ...training, postcode: e.target.value })}
+              onChange={(e) => setTraining({ ...training, customer: e.target.value })}
               fullWidth
               variant="standard"
             />

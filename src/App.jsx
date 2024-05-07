@@ -13,8 +13,10 @@ function App() {
         <Toolbar>
           <Typography variant="h6">Personal Training</Typography>
           <nav>
-            <Link to={"/CustomerList"}>CustomerList</Link>
-            <Link to={"/TrainingList"}>TrainingList</Link>
+            <Link to={"/CustomerList"}>Customers</Link>
+            <Link to={"/TrainingList"}>Trainings</Link>
+            <Link to={"/Calendar"}>Calendar</Link>
+            <Link to={"./TrainingCharts"}>Training Charts</Link>
           </nav>
         </Toolbar>
       </AppBar>

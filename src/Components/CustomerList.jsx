@@ -5,18 +5,18 @@ import { useEffect, useState } from "react"
 import { AgGridReact } from 'ag-grid-react'
 import { useRef } from "react";
 
-
-
 export default function CustomerList() {
 
-    const [customers, setCustomers] = useState([{id: '',
-    firstname: '',
-    lastname: '',
-    streetaddress: '',
-    postcode: '',
-    city: '',
-    email: '',
-    phone: ''}]);
+    const [customers, setCustomers] = useState([{
+        id: '',
+        firstname: '',
+        lastname: '',
+        streetaddress: '',
+        postcode: '',
+        city: '',
+        email: '',
+        phone: ''
+    }]);
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState('');
     const URL = 'https://customerrestservice-personaltraining.rahtiapp.fi/api/customers';
@@ -24,9 +24,9 @@ export default function CustomerList() {
 
     const columns = [
         { headerName: 'id', field: 'id', sortable: true, filter: true },
-        { headerName: 'firstname', field: 'firstname', sortable: true, filter: true },
-        { headerName: 'lastname', field: 'lastname', sortable: true, filter: true },
-        { headerName: 'streetaddress', field: 'streetaddress', sortable: true, filter: true },
+        { headerName: 'first name', field: 'firstname', sortable: true, filter: true },
+        { headerName: 'last name', field: 'lastname', sortable: true, filter: true },
+        { headerName: 'street address', field: 'streetaddress', sortable: true, filter: true },
         { headerName: 'postcode', field: 'postcode', sortable: true, filter: true },
         { headerName: 'city', field: 'city', sortable: true, filter: true },
         { headerName: 'email', field: 'email', sortable: true, filter: true },
@@ -121,9 +121,9 @@ export default function CustomerList() {
             .catch(err => console.error(err))
     }
 
-    return(
+    return (
         <>
-        <AddCustomer addCustomer={addCustomer} />
+            <AddCustomer addCustomer={addCustomer} />
             <div className="ag-theme-material" style={{ height: '800px', width: '100%', margin: 'auto' }}>
                 <AgGridReact
                     columnDefs={columns}

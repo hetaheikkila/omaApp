@@ -9,7 +9,7 @@ import EditTraining from './EditTraining';
 
 export default function TrainingList() {
 
-    const [trainings, setTrainings] = useState([{id: '',
+    const [trainings, setTrainings] = useState([{id: {},
     date: new Date(),
     duration: Number(),
     activity: '',
@@ -17,14 +17,14 @@ export default function TrainingList() {
 
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState('');
-    const URL = 'https://customerrestservice-personaltraining.rahtiapp.fi/api/trainings';
+    const URL = 'https://customerrestservice-personaltraining.rahtiapp.fi/api/gettrainings';
 
     const columns = [
         { headerName: 'id', field: 'id', sortable: true, filter: true },
         { headerName: 'date', field: 'date', sortable: true, filter: true },
         { headerName: 'duration', field: 'duration', sortable: true, filter: true },
         { headerName: 'activity', field: 'activity', sortable: true, filter: true },
-        { headerName: 'customer', field: 'customer', sortable: true, filter: true },
+        { headerName: 'customer',field: 'customer', sortable: true, filter: true },
         { cellRenderer: params => <EditTraining updateTraining={updateTraining} params={params} />, width: 120 },
         {
             cellRenderer: (params) =>
@@ -35,7 +35,9 @@ export default function TrainingList() {
         }
     ];
 
-    useEffect(() => getTrainings(), []);
+    useEffect(() => {
+        getTrainings();
+    }, []);
 
     const getTrainings = () => {
         fetch(URL)
@@ -120,18 +122,24 @@ export default function TrainingList() {
         <>
         <AddTraining addTraining={AddTraining} />
             <div className="ag-theme-material" style={{ height: '800px', width: '100%', margin: 'auto' }}>
-                <AgGridReact
-                    columnDefs={columns}
-                    rowData={trainings}
-                    animateRows={true}
-                    rowSelection="single"
-                    pagination={true}
-                    paginationPageSize={10}
-                    paginationPageSizeSelector={[10, 30, 50]}
-                    ref={gridRef}
-                    onGridReady={params => gridRef.current = params.api}
-                >
-                </AgGridReact>
+            <AgGridReact
+    columnDefs={columns}
+    rowData={trainings.map(training => ({
+        id: training.id,
+        date: training.date,
+        duration: training.duration,
+        activity: training.activity,
+        customer: training.customer
+    }))}
+    animateRows={true}
+    rowSelection="single"
+    pagination={true}
+    paginationPageSize={10}
+    paginationPageSizeSelector={[10, 30, 50]}
+    ref={gridRef}
+    onGridReady={params => gridRef.current = params.api}
+>
+</AgGridReact>
                 <Snackbar
                     open={open}
                     autoHideDuration={3000}

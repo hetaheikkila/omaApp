@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function AddTraining() {
+export default function AddTraining(props) {
 
     const [training, setTraining] = React.useState({
         id: '',
@@ -17,36 +17,31 @@ export default function AddTraining() {
     });
 
 
-    const [open, setOpen] = useState(false);
-
+    const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
         setOpen(true);
-        console.log(props.params);
-        setTraining({
-            date: props.params.data.date,
-            duration: props.params.data.duration,
-            activity: props.params.data.activity
-        });
-    };
+    }
 
     const handleClose = (event, reason) => {
+        console.log("handleClose -> setOpenFalse or not? " + reason);
         if (reason !== 'backdropClick')
             setOpen(false);
     };
 
     const handleSave = () => {
-        console.log(props.params.data._links.training.href);
-        props.updateCar(props.params.data._links.training.href, training);
+        console.log("AddCustomer; adds a new customer");
+        props.addCustomer(customer);
         setOpen(false);
     }
 
     return (
         <div>
-            <Button size="small" onClick={handleClickOpen}>
-                Edit Training
-            </Button>
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Edit Training</DialogTitle>
+            <Button onClick={handleClickOpen}>Add</Button>
+
+            <Dialog open={open}>
+                <DialogTitle>
+                    Add training
+                </DialogTitle>
                 <DialogContent>
                     <TextField
                         margin="dense"
@@ -84,7 +79,7 @@ export default function AddTraining() {
                         margin="dense"
                         label="customer"
                         value={training.customer.id}
-                        onChange={(e) => setTraining({ ...training, postcode: e.target.value })}
+                        onChange={(e) => setTraining({ ...training, customer: e.target.value })}
                         fullWidth
                         variant="standard"
                     />

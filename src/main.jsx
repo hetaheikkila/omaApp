@@ -5,6 +5,8 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import CustomerList from './Components/CustomerList.jsx';
 import TrainingList from './Components/TrainingList.jsx';
+import Calendar from 'react-calendar';
+import TrainingCharts from './Components/TrainingCharts.jsx';
 
 const router = createBrowserRouter([  // Import components that are used in routes
   {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([  // Import components that are used in rout
       {
         path: "TrainingList",                // path can be defined relative to the parent path
         element: <TrainingList />,
+      },
+      {
+        path: "Calendar",                // path can be defined relative to the parent path
+        element: <Calendar />,
+      },
+      {
+        path: "TrainingCharts",                // path can be defined relative to the parent path
+        element: <TrainingCharts />,
       },
     ]
   }

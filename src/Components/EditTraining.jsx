@@ -24,11 +24,10 @@ export default function EditTraining(props) {
         setOpen(true);
         console.log(props.params);
         setTraining({
-            id: props.params.data.id,
             date: props.params.data.date,
             duration: props.params.data.duration,
             activity: props.params.data.activity,
-            customer: props.params.data.customer
+            customer: props.params.data.customer.firstname
         });
     };
 
@@ -51,14 +50,6 @@ export default function EditTraining(props) {
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Edit Training</DialogTitle>
           <DialogContent>
-            <TextField
-              margin="dense"
-              label="id"
-              value={training.id}
-              onChange={(e) => setTraining({ ...training, id: e.target.value })}
-              fullWidth
-              variant="standard"
-            />
             <TextField
               margin="dense"
               label="date"

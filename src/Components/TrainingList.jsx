@@ -9,7 +9,7 @@ import EditTraining from './EditTraining';
 
 export default function TrainingList() {
 
-    const [trainings, setTrainings] = useState([{id: {},
+    const [trainings, setTrainings] = useState([{
     date: new Date(),
     duration: Number(),
     activity: '',
@@ -20,7 +20,6 @@ export default function TrainingList() {
     const URL = 'https://customerrestservice-personaltraining.rahtiapp.fi/api/gettrainings';
 
     const columns = [
-        { headerName: 'id', field: 'id', sortable: true, filter: true },
         { headerName: 'date', field: 'date', sortable: true, filter: true },
         { headerName: 'duration', field: 'duration', sortable: true, filter: true },
         { headerName: 'activity', field: 'activity', sortable: true, filter: true },
@@ -124,12 +123,11 @@ export default function TrainingList() {
             <div className="ag-theme-material" style={{ height: '800px', width: '100%', margin: 'auto' }}>
             <AgGridReact
     columnDefs={columns}
-    rowData={trainings.map(training => ({
-        id: training.id,
+    rowData={trainings.map((training) => ({
         date: training.date,
         duration: training.duration,
         activity: training.activity,
-        customer: training.customer
+        customer: training.customer.firstname
     }))}
     animateRows={true}
     rowSelection="single"

@@ -9,7 +9,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 export default function EditCustomer() {
 
   const [customer, setCustomer] = React.useState({
-    id: '',
     firstname: '',
     lastname: '',
     streetaddress: '',
@@ -25,7 +24,6 @@ export default function EditCustomer() {
     setOpen(true);
     console.log(props.params);
     setCustomer({
-      id: props.params.data.firstname,
       firstname: props.params.data.firstname,
       lastname: props.params.data.lastname,
       streetaddress: props.params.data.streetaddress,
@@ -55,14 +53,6 @@ export default function EditCustomer() {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit Customer</DialogTitle>
         <DialogContent>
-          <TextField
-            margin="dense"
-            label="id"
-            value={customer.id}
-            onChange={(e) => setCustomer({ ...customer, id: e.target.value })}
-            fullWidth
-            variant="standard"
-          />
           <TextField
             margin="dense"
             label="firstname"

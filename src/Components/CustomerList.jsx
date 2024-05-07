@@ -23,7 +23,6 @@ export default function CustomerList() {
 
 
     const columns = [
-        { headerName: 'id', field: 'id', sortable: true, filter: true },
         { headerName: 'first name', field: 'firstname', sortable: true, filter: true },
         { headerName: 'last name', field: 'lastname', sortable: true, filter: true },
         { headerName: 'street address', field: 'streetaddress', sortable: true, filter: true },
